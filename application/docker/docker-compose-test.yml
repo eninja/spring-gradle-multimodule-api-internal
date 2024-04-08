@@ -1,0 +1,9 @@
+version: '3'
+services:
+  postgres-test:
+    container_name: demo-app-postgres-test
+    extends:
+      file: docker-compose-common.yml
+      service: postgres
+    ports:
+      - "5433:5432"

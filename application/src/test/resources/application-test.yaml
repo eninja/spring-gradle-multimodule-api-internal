@@ -1,0 +1,31 @@
+server:
+  ssl:
+    enabled: ${DEMOAPP_SERVER_SSL_IS_ENABLED:false}
+  port: ${DEMOAPP_SERVER_PORT:9999}
+demoapp:
+  cors:
+    urls: ${DEMOAPP_CORS_URLS:http://localhost:9999}
+    mapping: ${DEMOAPP_CORS_MAPPING:/api/**}
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: TRACE
+            mvc: TRACE
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/mydb
+    username: myuser
+    password: mypassword
+  docker:
+    compose:
+      skip:
+        in-tests: false
+      file: ./docker/docker-compose-test.yml
+      enabled: true
+      profiles:
+        active: test
+  liquibase:
+    change-log: classpath:/changelog-master.xml

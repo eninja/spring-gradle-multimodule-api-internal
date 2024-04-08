@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':media:media-internal')
+    implementation project(':shared')
+}

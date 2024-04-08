@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres-local:
+    container_name: demo-app-postgres-local
+    extends:
+      file: docker-compose-common.yml
+      service: postgres
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "log_statement=all"]

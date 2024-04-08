@@ -1,0 +1,22 @@
+plugins {
+    id 'jacoco-report-aggregation'
+}
+
+dependencies {
+    implementation project(':vets:vets-api')
+    implementation project(':visits:visits-api')
+}
+
+bootJar {
+    enabled = true
+    archiveFileName = "demo-app.jar"
+    mainClass = 'com.example.demoapp.DemoApplication'
+}
+
+jar {
+    enabled = false
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('testCodeCoverageReport', JacocoReport)
+}

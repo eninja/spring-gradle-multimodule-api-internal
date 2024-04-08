@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':vets:vets-internal')
+    implementation project(':shared')
+}

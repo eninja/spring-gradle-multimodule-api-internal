@@ -1,0 +1,32 @@
+server:
+  shutdown: ${DEMOAPP_SERVER_SHUTDOWN:graceful}
+  ssl:
+    enabled: ${DEMOAPP_SERVER_SSL_IS_ENABLED:false}
+  port: ${DEMOAPP_SERVER_PORT:8080}
+demoapp:
+  cors:
+    urls: ${DEMOAPP_CORS_URLS:http://localhost:3000}
+    mapping: ${DEMOAPP_CORS_MAPPING:/api/**}
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: TRACE
+            mvc: TRACE
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    showCommonExtensions: true
+spring:
+  datasource:
+    url: ${DEMOAPP_DB_URL:jdbc:postgresql://localhost:5432/mydb}
+    username: ${DEMOAPP_DB_USER:myuser}
+    password: ${DEMOAPP_DB_PASSWORD:mypassword}
+  docker:
+    compose:
+      enabled: true
+      file: ./application/docker/docker-compose-local.yml
+  liquibase:
+    change-log: classpath:/changelog-master.xml

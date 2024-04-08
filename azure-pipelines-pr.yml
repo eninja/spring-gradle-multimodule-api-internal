@@ -1,0 +1,28 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.21'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'check'
+
+- task: PublishCodeCoverageResults@2
+  inputs:
+    codeCoverageTool: 'JaCoCo'
+    summaryFileLocation: '**/application/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
+    reportDirectory: '**/application/build/reports/jacoco/testCodeCoverageReport/html'

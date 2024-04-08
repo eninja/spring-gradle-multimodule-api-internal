@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':visits:visits-internal')
+    implementation project(':shared')
+}
